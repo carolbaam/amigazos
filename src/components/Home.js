@@ -2,21 +2,37 @@ import React, { Component } from "react";
 import JumbotronCard from "./reacstrap/JumbotronCard";
 import { Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import {connect} from 'react-redux'
+import {googleLogin} from '../actions/userActions'
+import {getUser} from '../actions/userActions'
+import Navbar from './reacstrap/Navbar'
 
-export default class Home extends Component {
+class Home extends Component {
   constructor() {
     super();
   }
 
+componentDidMount(){
+this.props.getUser();
+}
+
   render() {
     return (
       <Container>
+        <Navbar/>
         <JumbotronCard />
         <Col md={{ size: 4, offset: 4}} className="d-block mx-auto">
-        <Button color="primary">Inicia Sesión</Button>{' '}
-        <Button color="success">Regístrate</Button>{' '}
+        <Button color="primary" >Inicia Sesión</Button>{' '}
+        <Button color="success" onClick={this.props.googleLogin}>Regístrate</Button>{' '}
         </Col>
       </Container>
     );
   }
 }
+
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user
+  }
+}
+export default connect(mapStateToProps,{googleLogin, getUser} )(Home);
