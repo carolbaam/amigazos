@@ -5,15 +5,19 @@ import Form from "./reacstrap/Form";
 import { Container, Row, Col } from "reactstrap";
 import { Media } from "reactstrap";
 import FormCard from './reacstrap/FormCard'
+import {connect} from 'react-redux'
+import Navbar from '../components/reacstrap/Navbar'
 
-export default class Home extends Component {
+class Registration extends Component {
   constructor() {
     super();
   }
 
   render() {
     return (
+
       <Container>
+        <Navbar/>
         <h1 className="text-center">Personaliza tu perfil</h1>
         <Row>
           <Col md={{ size: 5, offset: 1 }}>
@@ -39,3 +43,12 @@ export default class Home extends Component {
     );
   }
 }
+
+
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user,
+    userLoading: state.loading.user,
+  }
+}
+export default connect(mapStateToProps)(Registration);
