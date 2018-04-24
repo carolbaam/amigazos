@@ -117,7 +117,8 @@ class Example extends React.Component {
 
   render() {
     return (
-      <Form>
+
+      <Form className="formCard">
         <FormGroup>
           <Label for="exampleEmail">Nombre</Label>
           <Input
@@ -173,3 +174,4 @@ function mapStateToProps(state, ownProps){
   }
 }
 export default connect(mapStateToProps)(Example);
+

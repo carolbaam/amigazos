@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
         <Switch>
-        <Route path="/" exact component={Home} /> 
+        <Route path="/" exact component={Home} />
         <Route path="/registration" exact component={Registration} />
         <Route path="/chat" exact component={Chat}/>
      

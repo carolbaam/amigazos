@@ -80,25 +80,28 @@ class FormUser extends React.Component {
 
   render() {
     return (
-      <Form>
+      <Form className="form-perfil">
         <FormGroup>
-          <Label for="exampleEmail">Nombre</Label>
+
+          <Label className="font-family font-color" for="exampleEmail">Nombre</Label>
           <Input type="email" name="email" id="exampleEmail"   onChange={this.onListNameChange}/>
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Email</Label>
+          <Label className="font-family font-color" for="examplePassword">Email</Label>
           <Input name="text" id="examplePassword" onChange={this.onListEmailChange} />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleFile">Teléfono</Label>
+          <Label className="font-family font-color" for="exampleFile">Teléfono</Label>
           <Input name="text" id="examplePassword"  onChange={this.onListPhoneChange} />
         </FormGroup>
         <br/>
         <button type="button" onClick={ () => { this.pathSample(this.state.name, this.state.email, this.state.phone)}}>Enviar datos</button>
+
       </Form>
     );
   }
 }
+
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -107,3 +110,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 export default connect(mapStateToProps, { getUser, postId })(FormUser);
+

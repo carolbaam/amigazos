@@ -42,7 +42,8 @@ class Home extends Component {
   render() {
 
     return (
-      <Container>
+
+      <Container className="font-family">
         <Navbar />
         <JumbotronCard />
         <Col md={{ size: 4, offset: 4 }} className="d-block mx-auto">
@@ -62,7 +63,7 @@ class Home extends Component {
           <button type="submit" onClick={this.sendToken}>
             enviar orden
           </button>
-            
+       
         </Col>
       </Container>
       
