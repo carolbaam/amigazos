@@ -1,7 +1,10 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import axios from 'axios';
-import {connect} from 'react-redux';
+import axios from "axios";
+import { connect } from "react-redux";
+import { postRoom } from "../../actions/userActions";
+import { withRouter } from "react-router-dom";
+
 
 class Example extends React.Component {
   constructor() {
@@ -13,8 +16,8 @@ class Example extends React.Component {
     this.onYearChange = this.onYearChange.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
     this.onCVCChange = this.onCVCChange.bind(this);
-    
-    
+    this.changeValue = this.changeValue.bind(this);
+
     this.state = {
       number: "",
       name: "",
@@ -25,7 +28,6 @@ class Example extends React.Component {
     };
   }
 
-  
   //Cada vez que el input cambie, el valor se va a almacenar en el estado.
   onNameChange(event) {
     //Sacamos una copia del estado.
@@ -62,35 +64,35 @@ class Example extends React.Component {
   }
 
   async getToken() {
-    console.log("la función se ejecuta")
+    console.log("la función se ejecuta");
     let number = this.state.number;
     let name = this.state.name;
     let exp_year = this.state.exp_year;
     let exp_month = this.state.exp_month;
-    let cvc = this.state.cvc
+    let cvc = this.state.cvc;
     const data = {
-
-
       card: {
         number: number,
         name: name,
         exp_year: exp_year,
         exp_month: exp_month,
         cvc: cvc,
+        selectedOption: null
       }
     };
 
     console.log(data);
 
     let stfun = this.sendToken;
+    let path = this.props.history
 
     await window.Conekta.Token.create(
       data,
       function(token) {
-        console.log(token)
+        console.log(token);
         stfun(token);
-
         let token2 = token.id;
+        path.push('/chat')
       },
       function(err) {
         console.error(err);
@@ -98,8 +100,13 @@ class Example extends React.Component {
     );
   }
 
+  changeValue(event) {
+    const room =(event.target.value);
+    this.props.postRoom(room);
+  }
+
   sendToken(token) {
-    let userId = this.props.cardId
+    let userId = this.props.cardId;
     axios
       .post("http://216.224.183.21:1339/payment", {
         token: token,
@@ -117,61 +124,86 @@ class Example extends React.Component {
 
   render() {
     return (
-
-      <Form className="formCard">
+      <div>
+        <Form className="formCard">
+          <FormGroup>
+            <Label for="exampleEmail">Nombre</Label>
+            <Input
+              type="email"
+              name="email"
+              onChange={this.onNameChange}
+              id="exampleEmail"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="examplePassword">Número de tarjeta</Label>
+            <Input
+              type="cardnumber"
+              name="password"
+              onChange={this.onNumberChange}
+              id="examplePassword"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="examplePassword">CVV</Label>
+            <Input
+              type="cvv"
+              name="number"
+              onChange={this.onCVCChange}
+              id="cvv"
+            />
+            <Label for="examplePassword">Fecha de expiración (AÑO)</Label>
+            <Input
+              type="text"
+              onChange={this.onYearChange}
+              name="password"
+              id="date"
+            />
+            <Label for="examplePassword">Fecha de expiración (MES)</Label>
+            <Input
+              type="text"
+              onChange={this.onMonthChange}
+              name="password"
+              id="date"
+            />
+          </FormGroup>
+        </Form>
         <FormGroup>
-          <Label for="exampleEmail">Nombre</Label>
-          <Input
-            type="email"
-            name="email"
-            onChange={this.onNameChange}
-            id="exampleEmail"
-          />
+          <Label for="exampleSelect">Select</Label>
+          <Input type="select" name="select" id="exampleSelect" onChange={this.changeValue}>
+            <option
+              value="2000"
+             
+            >
+              Sala Estándar
+            </option>
+            <option
+              value="20000"
+              
+            >
+              Sala Plus
+            </option>
+            <option
+              value="200000"
+            
+            
+            >
+              Sala VIP
+            </option>
+          </Input>
         </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">Número de tarjeta</Label>
-          <Input
-            type="cardnumber"
-            name="password"
-            onChange={this.onNumberChange}
-            id="examplePassword"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">CVV</Label>
-          <Input
-            type="cvv"
-            name="number"
-            onChange={this.onCVCChange}
-            id="cvv"
-          />
-          <Label for="examplePassword">Fecha de expiración (AÑO)</Label>
-          <Input
-            type="text"
-            onChange={this.onYearChange}
-            name="password"
-            id="date"
-          />
-          <Label for="examplePassword">Fecha de expiración (MES)</Label>
-          <Input
-            type="text"
-            onChange={this.onMonthChange}
-            name="password"
-            id="date"
-          />
-        </FormGroup>
-        <br />
-       <button type="button" onClick={this.getToken}>Submit</button>
-      </Form>
+        <button type="button" onClick={this.getToken}>
+          Submit
+        </button>
+      </div>
     );
   }
 }
 
-
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
   return {
-    cardId: state.cardId.cardId
-  }
+    cardId: state.cardId.cardId,
+    getRoom: state.chatRoom
+  };
 }
-export default connect(mapStateToProps)(Example);
-
+export default withRouter(connect(mapStateToProps, { postRoom })(Example));
