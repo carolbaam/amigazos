@@ -14,9 +14,6 @@ import axios from 'axios';
 class Home extends Component {
   constructor() {
     super();
-    this.pushSample = this.pushSample.bind(this);
-    this.getToken = this.getToken.bind(this);
-    this.sendToken = this.sendToken.bind(this);
     this.state = {
       Conekta: null,
       token: null
@@ -27,86 +24,18 @@ class Home extends Component {
     this.props.getUser();
   }
 
-  componentDidUpdate() {
-    if (this.props.userLoading === false && this.props.user) {
-      //  {this.props.history.push('/registration')}
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.userLoading === false && this.props.user) {
+  //     //  {this.props.history.push('/registration')}
+  //   }
+  // }
 
-  pushSample(event) {
-    console.log("funcion ejecutada");
-    event.preventDefault();
-    axios.post('http://10.242.0.70:1337/user', {
-      username: 'bernkaztel@hotmail.com',
-    })
-    .then(res => {
-      console.log(res);
-    });
-  }
 
-  pathSample(event){ 
-    console.log("funcion ejecutada");
-    event.preventDefault();
-    axios.patch('http://10.242.0.70:1337/user/95', {
-      "fullName": "Mariana Romo",
-    "email": "bernkaztel@hotmail.com",
-    "phone": "5584044798",
-    })
-    .then(res => {
-      console.log(res);
-    });
-  }
 
+  
 
 
     
-  async getToken() {
-    
-    const data = {
-      card: {
-        number: "4242424242424242",
-        name: "Javier Pedreiro",
-        exp_year: "2018",
-        exp_month: "12",
-        cvc: "123"
-      }
-    };
-
-    let stfun=this.sendToken;
-
-    
-
-    await window.Conekta.Token.create(data, 
-      function(token){
-        stfun(token);
-        
-      let token2 = token.id;
-    }, function(err){
-      console.error(err);
-    })
-
-  }
-
-
-  sendToken(token) {
-
-  let newToken = this.state.token
-  console.log(token);
-    axios.post('http://10.242.0.70:1337/payment', {
-      "token": token,
-      "amount": "20000",
-      "user": "95",
-      "service": "vip"
-    })
-    .then(res => {
-      console.log(res);
-    }).catch(err => 
-      {
-        console.log(err);
-      });
-  }
-
-
 
   
 

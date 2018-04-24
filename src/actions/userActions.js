@@ -1,5 +1,7 @@
 import {auth, googleProvider} from '../firebaseconfig'
-import {GET_USER, USER_STATUS}  from './actionTypes'
+import {GET_USER, USER_STATUS, POST_ID}  from './actionTypes'
+import axios from 'axios';
+
 
 export function getUser(){
     return dispatch => {
@@ -25,15 +27,25 @@ export function getUser(){
 }
 
 
-
+export function postId(id){
+    return dispatch => {
+        dispatch({
+            type: POST_ID,
+            payload: id
+        })
+    }
+}
 
 
 export function googleLogin(){
-    return dispatch => auth.signInWithPopup(googleProvider);
-}
+    return dispatch => {auth.signInWithPopup(googleProvider).then( () => { 
+        window.location.replace('/registration')
+    })
+}}
 
 
 export function logout(){
-    return dispatch => auth.signOut();
+    return dispatch => {auth.signOut();
+    
 }
-
+}
