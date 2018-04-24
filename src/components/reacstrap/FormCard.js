@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from "axios";
 import { connect } from "react-redux";
 import { postRoom } from "../../actions/userActions";
+import { withRouter } from "react-router-dom";
 
 
 class Example extends React.Component {
@@ -83,14 +84,15 @@ class Example extends React.Component {
     console.log(data);
 
     let stfun = this.sendToken;
+    let path = this.props.history
 
     await window.Conekta.Token.create(
       data,
       function(token) {
         console.log(token);
         stfun(token);
-
         let token2 = token.id;
+        path.push('/chat')
       },
       function(err) {
         console.error(err);
@@ -204,4 +206,4 @@ function mapStateToProps(state, ownProps) {
     getRoom: state.chatRoom
   };
 }
-export default connect(mapStateToProps, { postRoom })(Example);
+export default withRouter(connect(mapStateToProps, { postRoom })(Example));
