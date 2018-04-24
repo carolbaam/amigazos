@@ -1,5 +1,5 @@
 import {auth, googleProvider} from '../firebaseconfig'
-import {GET_USER, USER_STATUS, POST_ID}  from './actionTypes'
+import {GET_USER, USER_STATUS, POST_ID, POST_ROOM}  from './actionTypes'
 import axios from 'axios';
 
 
@@ -32,6 +32,17 @@ export function postId(id){
         dispatch({
             type: POST_ID,
             payload: id
+        })
+    }
+}
+
+
+
+export function postRoom(room){
+    return dispatch => {
+        dispatch({
+            type: POST_ROOM,
+            payload: room
         })
     }
 }

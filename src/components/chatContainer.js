@@ -7,6 +7,7 @@ import MessageViewer from './chats/messageViewer'
 import ChatLateralBar from './chats/chatLateralBar'
 import { getUser } from "../actions/userActions";
 import {connect} from 'react-redux';
+
 // imifconport io from 'socket.io-client';
 import socketIOClient from 'socket.io-client';
 const sailsIOClient = require('sails.io.js');
@@ -97,7 +98,10 @@ class ChatContainer extends React.Component{
     return {
       user: state.user,
       userLoading: state.loading.user,
+      chatRoom: state.chatRoom
     }
   }
   export default connect(mapStateToProps, { getUser })(ChatContainer);
+  
+
   
