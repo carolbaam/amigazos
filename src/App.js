@@ -4,6 +4,7 @@ import Registration from "./components/Registration";
 import Chat from "./components/chatContainer";
 import Navbar from "./components/reacstrap/Navbar";
 import { Switch, Route } from "react-router-dom";
+//import {messages} from './components/messages';
 
 class App extends Component {
   render() {
@@ -11,7 +12,8 @@ class App extends Component {
         <Switch>
         <Route path="/" exact component={Home} /> 
         <Route path="/registration" exact component={Registration} />
-        <Route path="/chat" exact component={Chat} />
+        <Route path="/chat" exact component={Chat}/>
+     
         </Switch>
     );
   }

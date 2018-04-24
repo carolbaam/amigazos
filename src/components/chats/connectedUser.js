@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'reactstrap';
 
-export default class chatLateralBar extends Component {
+export default class connectedUser extends Component {
   constructor() {
     super();
   }
