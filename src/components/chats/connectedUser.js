@@ -4,6 +4,9 @@ import { Container, Row, Col } from 'reactstrap';
 export default class connectedUser extends Component {
   constructor() {
     super();
+    this.state{(
+      active:false
+    )}
   }
 
   render() {
@@ -12,3 +15,12 @@ export default class connectedUser extends Component {
     );
   }
 }
+
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user,
+    userLoading: state.loading.user,
+  }
+}
+export default connect(mapStateToProps, { getUser })(NewMessage);
+

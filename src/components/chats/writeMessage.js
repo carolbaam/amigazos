@@ -31,9 +31,9 @@ class writeMessage extends React.Component{
            
               <form className="ChatForm" onSubmit={this.handleNewMessage}>
              
-          <span><strong>{this.props.user.displayName}</strong> dice:</span>
+      <span><strong>{this.props.user.displayName}</strong> dice:</span>
           <br/>
-          <Label for="exampleText">Coloca aquí tu mensaje</Label>
+          <Label for="exampleText">{this.props.user.displayName}, coloca aquí tu mensaje</Label>
           <input type="text" placeholder="message..." className="text" ref="message" />
           <input type="submit" value="Send" />
             </form>

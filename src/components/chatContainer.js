@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 import JumbotronChat from "./reacstrap/JumbotronChat";
 import WriteMessage from './chats/writeMessage'
 import MessageViewer from './chats/messageViewer'
-import ChatLateralBar from './chats/chatLateralBar'
+//import ChatLateralBar from './chats/chatLateralBar'
 import { getUser } from "../actions/userActions";
 import {connect} from 'react-redux';
 // imifconport io from 'socket.io-client';
@@ -82,8 +81,7 @@ class ChatContainer extends React.Component{
                 <WriteMessage socket={io} onNewMessage={this.handleNewMessage} />
               </Col>
               <Col md="4" className="d-block mx-auto">
-                <ChatLateralBar />
-              </Col>
+               </Col>
             </Row>
           </Container>
         )

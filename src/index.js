@@ -7,7 +7,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/storeConfig";
 import { Provider } from "react-redux"
-import Navbar from './components/reacstrap/Navbar.js'
+
 
 
 ReactDOM.render(

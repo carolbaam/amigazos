@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import ConnectedUser from "./connectedUser";
-
+/*
 export default class chatLateralBar extends Component {
   constructor() {
     super();
@@ -16,3 +16,11 @@ export default class chatLateralBar extends Component {
     );
   }
 }
+
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user,
+    userLoading: state.loading.user,
+  }
+}
+export default connect(mapStateToProps, { getUser })(NewMessage);*/
