@@ -11,13 +11,13 @@ export default class Example extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Número de tarjeta</Label>
-          <Input type="password" name="password" id="examplePassword"  />
+          <Input type="cardnumber" name="password" id="examplePassword"  />
         </FormGroup>
         <FormGroup>
             <Label for="examplePassword">CVV</Label>
-          <Input type="password" name="password" id="examplePassword"  />
+          <Input type="cvv" name="number" id="cvv"  />
           <Label for="examplePassword">Fecha de expiración</Label>
-          <Input type="password" name="password" id="examplePassword"  />
+          <Input type="text" name="password" id="date"  />
         </FormGroup>
         <br/>
         <Button>Submit</Button>
