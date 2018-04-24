@@ -4,21 +4,21 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 export default class Example extends React.Component {
   render() {
     return (
-      <Form>
+      <Form className="form-perfil">
         <FormGroup>
-          <Label for="exampleEmail">Tu nombre</Label>
-          <Input type="email" name="email" id="exampleEmail" />
+          <Label className="font-family font-color" for="exampleEmail">Tu nombre:</Label>
+          <Input className="input-name" type="email" name="email" id="exampleEmail" />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Tu frase favorita</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+          <Label className="font-family font-color" for="examplePassword">Tu frase favorita:</Label>
+          <Input className="input" size="10" type="password" name="password" id="examplePassword" placeholder="password placeholder" />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleFile">Sube tu foto de perfil</Label>
-          <Input type="file" name="file" id="exampleFile" />
+          <Label className="font-family font-color" for="exampleFile">Sube tu foto de perfil:</Label>
+          <Input className="input" type="file" name="file" id="exampleFile" />
         </FormGroup>
         <br/>
-        <Button>Submit</Button>
+        <Button className="block" color="primary" size="lg" block>Enviar</Button>{' '}
       </Form>
     );
   }

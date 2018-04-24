@@ -7,6 +7,8 @@ import { Media } from "reactstrap";
 import FormCard from './reacstrap/FormCard'
 import {connect} from 'react-redux'
 import Navbar from '../components/reacstrap/Navbar'
+import Style from './style.css'
+
 
 class Registration extends Component {
   constructor() {
@@ -15,22 +17,21 @@ class Registration extends Component {
 
   render() {
     return (
-
-      <Container>
-        <Navbar/>
-        <h1 className="text-center">Personaliza tu perfil</h1>
+      <Container className="background-one">
+        <Navbar />
+        <h1 className="text-center titles">Personaliza tu perfil</h1>
         <Row>
           <Col md={{ size: 5, offset: 1 }}>
             <Form />
           </Col>
-          <Col style={{ marginTop: "10px", marginLeft: "100px" }}>
+          <Col style={{ marginTop: "20px", marginLeft: "70px" }}>
             <img
-              src="https://dummyimage.com/200x200/d1d1d1/000000"
+              src="https://dummyimage.com/350x350/d1d1d1/000000"
               alt="Generic placeholder image"
             />
           </Col>
         </Row>
-        <h1 className="text-center">Método de pago</h1>
+        <h1 className="text-center titles">Método de pago</h1>
         <Row>
           <Col>
         <FormCard/>

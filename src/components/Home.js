@@ -24,12 +24,12 @@ componentDidUpdate(){
 
   render() {
     return (
-      <Container>
+      <Container className="font-family">
         <Navbar/>
         <JumbotronCard />
         <Col md={{ size: 4, offset: 4}} className="d-block mx-auto">
-        <Button color="primary" >Inicia Sesión</Button>{' '}
-        <Button color="success" onClick={this.props.googleLogin}>Regístrate</Button>{' '}
+        <Button color="primary"  size="lg" >Inicia Sesión</Button>{' '}
+        <Button color="success"  size="lg" onClick={this.props.googleLogin}>Regístrate</Button>{' '}
         </Col>
       </Container>
     );
