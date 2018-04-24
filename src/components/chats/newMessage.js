@@ -1,16 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Row, Col } from 'reactstrap';
+import { getUser } from "../../actions/userActions";
+import {connect} from 'react-redux';
 
-export default class messageViewer extends Component {
-  constructor() {
-    super();
+
+
+
+class NewMessage extends React.Component{
+  render(){
+      return (
+          <li className="ChatMessage" key={this.props.index}>
+            <span className="author"><strong>{this.props.user.displayName}</strong> dice:</span>
+            <span className="message">"{this.props.message}"</span>
+          </li>
+          );
   }
 
-  render() {
-    return (
-     <div>
-         Nuevo mensaje
-     </div>
-    );
+
+
+
+
+  
+}
+
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user,
+    userLoading: state.loading.user,
   }
 }
+export default connect(mapStateToProps, { getUser })(NewMessage);

@@ -2,16 +2,30 @@ import React, { Component } from "react";
 import { Container, Row, Col } from 'reactstrap';
 import NewMessage from './newMessage'
 
-export default class messageViewer extends Component {
-  constructor() {
-    super();
+
+
+
+class MessageViewer extends React.Component{
+  render(){
+      const messages = this.props.messages.map(function (message, index) {
+          return ( 
+                   <NewMessage
+          
+                    user={message.user}
+                    message={message.message}
+                    key={index} 
+                    index={index}/>
+                
+                 );
+        });
+      return(
+          <ul className="ChatList">
+          {messages}
+        </ul>
+      )
   }
 
-  render() {
-    return (
-       <Container>
-           <NewMessage/>
-       </Container>
-    );
-  }
+
 }
+
+export default MessageViewer;
