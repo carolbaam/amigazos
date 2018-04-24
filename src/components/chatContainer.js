@@ -5,9 +5,13 @@ import JumbotronChat from "./reacstrap/JumbotronChat";
 import WriteMessage from './chats/writeMessage'
 import MessageViewer from './chats/messageViewer'
 import ChatLateralBar from './chats/chatLateralBar'
-import io from 'socket.io-client';
+import { getUser } from "../actions/userActions";
+import {connect} from 'react-redux';
+// imifconport io from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
+const sailsIOClient = require('sails.io.js');
 
-
+const io = sailsIOClient(socketIOClient);
 
 class ChatContainer extends React.Component{
   constructor(props){
@@ -23,12 +27,11 @@ class ChatContainer extends React.Component{
  
    //convertir a arrow function todas las internas
     componentDidMount() {
-     const socketIOClient = require('socket.io-client');
-     const sailsIOClient = require('sails.io.js');
+      //obtenemos el usuario 
+      this.props.getUser();
      
      // Instantiate the socket client (`io`)
      // (for now, you must explicitly pass in the socket.io client when using this library from Node.js)
-     const io = sailsIOClient(socketIOClient);
      io.sails.url = 'http://216.224.183.21:1339';
      //const apiUrl="http://216.224.183.21:1339";
      
@@ -89,7 +92,12 @@ class ChatContainer extends React.Component{
    };
      
      
- 
-     export default ChatContainer;
 
-
+   function mapStateToProps(state, ownProps){
+    return {
+      user: state.user,
+      userLoading: state.loading.user,
+    }
+  }
+  export default connect(mapStateToProps, { getUser })(ChatContainer);
+  
