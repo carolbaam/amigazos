@@ -16,6 +16,12 @@ componentDidMount(){
 this.props.getUser();
 }
 
+componentDidUpdate(){
+  if(this.props.userLoading === false && this.props.user){
+  //  {this.props.history.push('/registration')}
+}
+}
+
   render() {
     return (
       <Container>
@@ -32,7 +38,8 @@ this.props.getUser();
 
 function mapStateToProps(state, ownProps){
   return {
-    user: state.user
+    user: state.user,
+    userLoading: state.loading.user,
   }
 }
 export default connect(mapStateToProps,{googleLogin, getUser} )(Home);
