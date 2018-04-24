@@ -7,11 +7,42 @@ import { Media } from "reactstrap";
 import FormCard from './reacstrap/FormCard'
 import {connect} from 'react-redux'
 import Navbar from '../components/reacstrap/Navbar'
+import { getUser } from "../actions/userActions";
+import axios from 'axios';
 
 class Registration extends Component {
   constructor() {
     super();
+    this.state= {
+      userId: null
+    }
   }
+  
+  componentDidMount() {
+    this.props.getUser()
+
+  
+  }
+
+  // componentWillReceiveProps(){
+  //   console.log(this.props.user.email);
+  //   this.pushSample(this.props.user.email)
+  // }
+
+
+  pushSample(user) {
+    console.log("user",user);
+    axios.post('http://216.224.183.21:1339/user', {
+      username: user,
+    })
+    .then(res => {
+      this.setState({userId: res.data.condos.id})
+      console.log("guardado en estado",this.state.userId);
+    }).catch( (err) =>{
+      console.log(err);
+    })
+  }
+
 
   render() {
     return (
@@ -29,7 +60,9 @@ class Registration extends Component {
               alt="Generic placeholder image"
             />
           </Col>
+     
         </Row>
+
         <h1 className="text-center">Método de pago</h1>
         <Row>
           <Col>
@@ -51,4 +84,4 @@ function mapStateToProps(state, ownProps){
     userLoading: state.loading.user,
   }
 }
-export default connect(mapStateToProps)(Registration);
+export default connect(mapStateToProps, { getUser })(Registration);
